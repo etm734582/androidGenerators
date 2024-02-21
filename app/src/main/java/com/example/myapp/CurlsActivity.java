@@ -1,5 +1,6 @@
 package com.example.myapp;
 
+import androidx.annotation.CallSuper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -52,15 +53,6 @@ public class CurlsActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        seekBarCurlsImSizeX = findViewById(R.id.seekBarCurlsImSizeX);
-        seekBarCurlsImSizeY = findViewById(R.id.seekBarCurlsImSizeY);
-        seekBarCurlsStepsQnty = findViewById(R.id.seekBarCurlsStepsQnty);
-        seekBarCurlsBranchLen = findViewById(R.id.seekBarCurlsBranchLen);
-        seekBarCurlsAngleShiftLim = findViewById(R.id.seekBarCurlsAngleShiftLim);
-        seekBarCurlsAngleShiftPlus = findViewById(R.id.seekBarCurlsAngleShiftPlus);
-        seekBarCurlsLineWidth = findViewById(R.id.seekBarCurlsLineWidth);
-        seekBarLineToNewLine = findViewById(R.id.seekBarLineToNewLine);
-        seekBarCurlsTreesQnty = findViewById(R.id.seekBarCurlsTreesQnty);
 
         int curlsImWidth = seekBarCurlsImSizeX.getProgress();
         int curlsImheight = seekBarCurlsImSizeY.getProgress();
@@ -100,47 +92,10 @@ public class CurlsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        textViewCurlsImWidth = findViewById(R.id.textViewCurlsImWidth);
-        textViewCurlsImHeight = findViewById(R.id.textViewCurlsImHeight);
-        textViewCurlsSteps = findViewById(R.id.textViewCurlsSteps);
-        textViewCurlsBranchLenght = findViewById(R.id.textViewCurlsBranchLenght);
-        textViewCurlsAShiftMax = findViewById(R.id.textViewCurlsAShiftMax);
-        textViewAShiftPlus = findViewById(R.id.textViewAShiftPlus);
-        textViewCurlsLineWidthL = findViewById(R.id.textViewCurlsLineWidthL);
-        textViewLineToNewLine = findViewById(R.id.textViewLineToNewLine);
-        textViewCurlsTreesQntyCntr = findViewById(R.id.textViewCurlsTreesQntyCntr);
-
-        seekBarCurlsImSizeX = findViewById(R.id.seekBarCurlsImSizeX);
-        seekBarCurlsImSizeY = findViewById(R.id.seekBarCurlsImSizeY);
-        seekBarCurlsStepsQnty = findViewById(R.id.seekBarCurlsStepsQnty);
-        seekBarCurlsBranchLen = findViewById(R.id.seekBarCurlsBranchLen);
-        seekBarCurlsAngleShiftLim = findViewById(R.id.seekBarCurlsAngleShiftLim);
-        seekBarCurlsAngleShiftPlus = findViewById(R.id.seekBarCurlsAngleShiftPlus);
-        seekBarCurlsLineWidth = findViewById(R.id.seekBarCurlsLineWidth);
-        seekBarLineToNewLine = findViewById(R.id.seekBarLineToNewLine);
-        seekBarCurlsTreesQnty = findViewById(R.id.seekBarCurlsTreesQnty);
-
-        seekBarCurlsStartColorR = findViewById(R.id.seekBarCurlsStartColorR);
-        seekBarCurlsStartColorG = findViewById(R.id.seekBarCurlsStartColorG);
-        seekBarCurlsStartColorB = findViewById(R.id.seekBarCurlsStartColorB);
-        seekBarCurlsFinishColorR = findViewById(R.id.seekBarCurlsFinishColorR);
-        seekBarCurlsFinishColorG = findViewById(R.id.seekBarCurlsFinishColorG);
-        seekBarCurlsFinishColorB = findViewById(R.id.seekBarCurlsFinishColorB);
-        seekBarCurlsBackColR = findViewById(R.id.seekBarCurlsBackColR);
-        seekBarCurlsBackColG = findViewById(R.id.seekBarCurlsBackColG);
-        seekBarCurlsBackColB = findViewById(R.id.seekBarCurlsBackColB);
 
         SharedPreferences sharedPreferences = getSharedPreferences("CurlsSettings", MODE_PRIVATE);
 
-        startColorR = sharedPreferences.getInt("startColorR", -1);
-        startColorG = sharedPreferences.getInt("startColorG", -1);
-        startColorB = sharedPreferences.getInt("startColorB", -1);
-        finishColorR = sharedPreferences.getInt("finishColorR", -1);
-        finishColorG = sharedPreferences.getInt("finishColorG", -1);
-        finishColorB = sharedPreferences.getInt("finishColorB", -1);
-        backColorR = sharedPreferences.getInt("backColorR", -1);
-        backColorG = sharedPreferences.getInt("backColorG", -1);
-        backColorB = sharedPreferences.getInt("backColorB", -1);
+        getColors(sharedPreferences);
 
         int curlsImWidth = sharedPreferences.getInt("curlsImWidth", -1);
         int curlsImheight = sharedPreferences.getInt("curlsImheight", -1);
@@ -227,366 +182,63 @@ public class CurlsActivity extends AppCompatActivity {
         }
     }
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curls);
-        startColorR = 100;
-        startColorG = 100;
-        startColorB = 100;
-        finishColorR = 100;
-        finishColorG = 100;
-        finishColorB = 100;
-        backColorR = 100;
-        backColorG = 100;
-        backColorB = 100;
 
-
-
-        seekBarCurlsImSizeX = findViewById(R.id.seekBarCurlsImSizeX);
-        seekBarCurlsImSizeY = findViewById(R.id.seekBarCurlsImSizeY);
-        seekBarCurlsStepsQnty = findViewById(R.id.seekBarCurlsStepsQnty);
-        seekBarCurlsBranchLen = findViewById(R.id.seekBarCurlsBranchLen);
-        seekBarCurlsAngleShiftLim = findViewById(R.id.seekBarCurlsAngleShiftLim);
-        seekBarCurlsAngleShiftPlus = findViewById(R.id.seekBarCurlsAngleShiftPlus);
-        seekBarCurlsLineWidth = findViewById(R.id.seekBarCurlsLineWidth);
-        seekBarLineToNewLine = findViewById(R.id.seekBarLineToNewLine);
-        seekBarCurlsTreesQnty = findViewById(R.id.seekBarCurlsTreesQnty);
-
-        textViewCurlsImWidth = findViewById(R.id.textViewCurlsImWidth);
-        textViewCurlsImHeight = findViewById(R.id.textViewCurlsImHeight);
-        textViewCurlsSteps = findViewById(R.id.textViewCurlsSteps);
-        textViewCurlsBranchLenght = findViewById(R.id.textViewCurlsBranchLenght);
-        textViewCurlsAShiftMax = findViewById(R.id.textViewCurlsAShiftMax);
-        textViewAShiftPlus = findViewById(R.id.textViewAShiftPlus);
-        textViewCurlsLineWidthL = findViewById(R.id.textViewCurlsLineWidthL);
-        textViewLineToNewLine = findViewById(R.id.textViewLineToNewLine);
-        textViewCurlsTreesQntyCntr = findViewById(R.id.textViewCurlsTreesQntyCntr);
-
-
-
-
-
-        seekBarCurlsStartColorR = findViewById(R.id.seekBarCurlsStartColorR);
-        seekBarCurlsStartColorG = findViewById(R.id.seekBarCurlsStartColorG);
-        seekBarCurlsStartColorB = findViewById(R.id.seekBarCurlsStartColorB);
-        viewCurlsStartColor = findViewById(R.id.viewCurlsStartColor);
-
-        seekBarCurlsFinishColorR = findViewById(R.id.seekBarCurlsFinishColorR);
-        seekBarCurlsFinishColorG = findViewById(R.id.seekBarCurlsFinishColorG);
-        seekBarCurlsFinishColorB = findViewById(R.id.seekBarCurlsFinishColorB);
-        viewCurlsFinishColor = findViewById(R.id.viewCurlsFinishColor);
-
-        seekBarCurlsBackColR = findViewById(R.id.seekBarCurlsBackColR);
-        seekBarCurlsBackColG = findViewById(R.id.seekBarCurlsBackColG);
-        seekBarCurlsBackColB = findViewById(R.id.seekBarCurlsBackColB);
-        viewCurlsBackColor = findViewById(R.id.viewCurlsBackColor);
-
-        SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (seekBar.getId() == seekBarCurlsImSizeX.getId()) {
-                    textViewCurlsImWidth.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarCurlsImSizeY.getId()) {
-                    textViewCurlsImHeight.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarCurlsLineWidth.getId()) {
-                    textViewCurlsLineWidthL.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarCurlsStepsQnty.getId()) {
-                    textViewCurlsSteps.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarCurlsBranchLen.getId()) {
-                    textViewCurlsBranchLenght.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarCurlsAngleShiftLim.getId()) {
-                    textViewCurlsAShiftMax.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarCurlsAngleShiftPlus.getId()) {
-                    textViewAShiftPlus.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarLineToNewLine.getId()) {
-                    textViewLineToNewLine.setText(String.valueOf(progress));
-                }
-                else if (seekBar.getId() == seekBarCurlsTreesQnty.getId()) {
-                    textViewCurlsTreesQntyCntr.setText(String.valueOf(progress));
-                }
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        };
-        seekBarCurlsImSizeX.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarCurlsImSizeY.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarCurlsStepsQnty.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarCurlsBranchLen.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarCurlsAngleShiftLim.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarCurlsAngleShiftPlus.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarCurlsLineWidth.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarLineToNewLine.setOnSeekBarChangeListener(seekBarChangeListener);
-        seekBarCurlsTreesQnty.setOnSeekBarChangeListener(seekBarChangeListener);
-
-        // private TextView textViewCurlsmageSizeX, textViewCurlsImageSizeY, textViewCurlsStepsQnty, textViewCurlsBranchLen;
-        // private TextView textViewCurlsAngleShiftMax, textViewAngleShiftPlus, textViewCurlsLineWidth, textViewCurlsStartColor;
-        // private TextView textViewCurlsFinishColor, textViewCurlsBackColor, textViewStarttoNewLine, textViewCurlsTreesQnty;
-        // private TextView textViewCurlsHeader;
-
-        textViewCurlsmageSizeX = findViewById(R.id.textViewCurlsmageSizeX);
-        textViewCurlsImageSizeY = findViewById(R.id.textViewCurlsImageSizeY);
-        textViewCurlsStepsQnty = findViewById(R.id.textViewCurlsStepsQnty);
-        textViewCurlsBranchLen = findViewById(R.id.textViewCurlsBranchLen);
-        textViewCurlsAngleShiftMax = findViewById(R.id.textViewCurlsAngleShiftMax);
-        textViewAngleShiftPlus = findViewById(R.id.textViewAngleShiftPlus);
-        textViewCurlsLineWidth = findViewById(R.id.textViewCurlsLineWidth);
-        textViewCurlsStartColor = findViewById(R.id.textViewCurlsStartColor);
-        textViewCurlsFinishColor = findViewById(R.id.textViewCurlsFinishColor);
-        textViewCurlsBackColor = findViewById(R.id.textViewCurlsBackColor);
-        textViewStarttoNewLine = findViewById(R.id.textViewStarttoNewLine);
-        textViewCurlsTreesQnty = findViewById(R.id.textViewCurlsTreesQnty);
-
+        getSeekBarsOneBar();
+        getTextViews();
+        getForStartColor();
+        getForFinishColor();
+        getForBackColor();
+        getDefaultColors();
+        getParametersName();
         textViewCurlsHeader = findViewById(R.id.textViewCurlsHeader);
 
-        View.OnClickListener onClickListenerSizeX = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.image_width))
-                        .setMessage(getResources().getString(R.string.explanation_size_x))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerSizeY = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.image_height))
-                        .setMessage(getResources().getString(R.string.explanation_size_y))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerStepsQnty = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.steps_qnty))
-                        .setMessage(getResources().getString(R.string.explanation_steps_qnty))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerBranchLenght = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.branch_lenght))
-                        .setMessage(getResources().getString(R.string.explanation_branch_lenght))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerAngleShiftMax = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.angle_shift_max))
-                        .setMessage(getResources().getString(R.string.explanation_angle_shift_max))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerAngleShiftPlus = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.angle_shift_plus))
-                        .setMessage(getResources().getString(R.string.explanation_angle_shift_plus))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerLineWidth = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.line_width))
-                        .setMessage(getResources().getString(R.string.explanation_line_width))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerStartColor = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.start_color))
-                        .setMessage(getResources().getString(R.string.explanation_start_color))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerFinishColor = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.finish_color))
-                        .setMessage(getResources().getString(R.string.explanation_finish_color))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerBackgroundColor = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.background_color))
-                        .setMessage(getResources().getString(R.string.explanation_background_color))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerLineToNewLine = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.lines_to_new_line))
-                        .setMessage(getResources().getString(R.string.explanation_LTNL))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerTreesQnty = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.trees_qnty_exp))
-                        .setMessage(getResources().getString(R.string.explanation_trees_qnty))
-                        .show();
-            }
-        };
-        View.OnClickListener onClickListenerCurlsDesc = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CurlsActivity.this)
-                        .setTitle(getResources().getString(R.string.trees_qnty_exp))
-                        .setMessage(getResources().getString(R.string.explanation_trees_qnty))
-                        .show();
-            }
-        };
+        SeekBar.OnSeekBarChangeListener listenerForOneBarParameters = getListenerForOneBarParameters();
+        seekBarCurlsImSizeX.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarCurlsImSizeY.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarCurlsStepsQnty.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarCurlsBranchLen.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarCurlsAngleShiftLim.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarCurlsAngleShiftPlus.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarCurlsLineWidth.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarLineToNewLine.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        seekBarCurlsTreesQnty.setOnSeekBarChangeListener(listenerForOneBarParameters);
 
-        textViewCurlsmageSizeX.setOnClickListener(onClickListenerSizeX);
-        textViewCurlsImageSizeY.setOnClickListener(onClickListenerSizeY);
-        textViewCurlsStepsQnty.setOnClickListener(onClickListenerStepsQnty);
-        textViewCurlsBranchLen.setOnClickListener(onClickListenerBranchLenght);
-        textViewCurlsAngleShiftMax.setOnClickListener(onClickListenerAngleShiftMax);
-        textViewAngleShiftPlus.setOnClickListener(onClickListenerAngleShiftPlus);
-        textViewCurlsLineWidth.setOnClickListener(onClickListenerLineWidth);
-        textViewCurlsStartColor.setOnClickListener(onClickListenerStartColor);
-        textViewCurlsFinishColor.setOnClickListener(onClickListenerFinishColor);
-        textViewCurlsBackColor.setOnClickListener(onClickListenerBackgroundColor);
-        textViewStarttoNewLine.setOnClickListener(onClickListenerLineToNewLine);
-        textViewCurlsTreesQnty.setOnClickListener(onClickListenerTreesQnty);
-
-        textViewCurlsHeader.setOnClickListener(onClickListenerCurlsDesc);
+        textViewCurlsmageSizeX.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_width), getResources().getString(R.string.explanation_size_x)));
+        textViewCurlsImageSizeY.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_height), getResources().getString(R.string.explanation_size_y)));
+        textViewCurlsStepsQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.steps_qnty), getResources().getString(R.string.explanation_steps_qnty)));
+        textViewCurlsBranchLen.setOnClickListener(getOnClickListener(getResources().getString(R.string.branch_lenght), getResources().getString(R.string.explanation_branch_lenght)));
+        textViewCurlsAngleShiftMax.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_max), getResources().getString(R.string.explanation_angle_shift_max)));
+        textViewAngleShiftPlus.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_plus), getResources().getString(R.string.explanation_angle_shift_plus)));
+        textViewCurlsStartColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.start_color), getResources().getString(R.string.explanation_start_color)));
+        textViewCurlsFinishColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.finish_color), getResources().getString(R.string.explanation_finish_color)));
+        textViewCurlsBackColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.background_color), getResources().getString(R.string.explanation_background_color)));
+        textViewStarttoNewLine.setOnClickListener(getOnClickListener(getResources().getString(R.string.lines_to_new_line), getResources().getString(R.string.explanation_LTNL)));
+        textViewCurlsTreesQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.trees_qnty_exp), getResources().getString(R.string.explanation_trees_qnty)));
+        textViewCurlsHeader.setOnClickListener(getOnClickListener(getResources().getString(R.string.line_width), getResources().getString(R.string.explanation_line_width)));
 
 
 
 
         Button backButton = (Button) findViewById(R.id.buttonCurlsBack);
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CurlsActivity.this, GeneratorsActicity.class);
-                startActivity(intent);
-            }
-        };
-        backButton.setOnClickListener(onClickListener);
+        backButton.setOnClickListener(getBackButtonListener());
 
+        seekBarCurlsStartColorR.setOnSeekBarChangeListener(getSeekBarStartColorListener());
+        seekBarCurlsStartColorG.setOnSeekBarChangeListener(getSeekBarStartColorListener());
+        seekBarCurlsStartColorB.setOnSeekBarChangeListener(getSeekBarStartColorListener());
 
-        SeekBar.OnSeekBarChangeListener onSeekBarChangeListenerStart = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (seekBar.getId() == seekBarCurlsStartColorR.getId()) {
-                    startColorR = seekBar.getProgress();
-                }
-                if (seekBar.getId() == seekBarCurlsStartColorG.getId()) {
-                    startColorG = seekBar.getProgress();
-                }
-                if (seekBar.getId() == seekBarCurlsStartColorB.getId()) {
-                    startColorB = seekBar.getProgress();
-                }
-                updateColorIndicatorStart();
-            }
+        seekBarCurlsFinishColorR.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
+        seekBarCurlsFinishColorG.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
+        seekBarCurlsFinishColorB.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
 
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        };
-        seekBarCurlsStartColorR.setOnSeekBarChangeListener(onSeekBarChangeListenerStart);
-        seekBarCurlsStartColorG.setOnSeekBarChangeListener(onSeekBarChangeListenerStart);
-        seekBarCurlsStartColorB.setOnSeekBarChangeListener(onSeekBarChangeListenerStart);
-
-
-        SeekBar.OnSeekBarChangeListener onSeekBarChangeListenerFinish = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (seekBar.getId() == seekBarCurlsFinishColorR.getId()) {
-                    finishColorR = seekBar.getProgress();
-                }
-                if (seekBar.getId() == seekBarCurlsFinishColorG.getId()) {
-                    finishColorG = seekBar.getProgress();
-                }
-                if (seekBar.getId() == seekBarCurlsFinishColorB.getId()) {
-                    finishColorB = seekBar.getProgress();
-                }
-                updateColorIndicatorFinish();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        };
-        seekBarCurlsFinishColorR.setOnSeekBarChangeListener(onSeekBarChangeListenerFinish);
-        seekBarCurlsFinishColorG.setOnSeekBarChangeListener(onSeekBarChangeListenerFinish);
-        seekBarCurlsFinishColorB.setOnSeekBarChangeListener(onSeekBarChangeListenerFinish);
-
-
-        SeekBar.OnSeekBarChangeListener onSeekBarChangeListenerBack = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (seekBar.getId() == seekBarCurlsBackColR.getId()) {
-                    backColorR = seekBar.getProgress();
-                }
-                if (seekBar.getId() == seekBarCurlsBackColG.getId()) {
-                    backColorG = seekBar.getProgress();
-                }
-                if (seekBar.getId() == seekBarCurlsBackColB.getId()) {
-                    backColorB = seekBar.getProgress();
-                }
-                updateBackColorIndicatorBack();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        };
-        seekBarCurlsBackColR.setOnSeekBarChangeListener(onSeekBarChangeListenerBack);
-        seekBarCurlsBackColG.setOnSeekBarChangeListener(onSeekBarChangeListenerBack);
-        seekBarCurlsBackColB.setOnSeekBarChangeListener(onSeekBarChangeListenerBack);
+        seekBarCurlsBackColR.setOnSeekBarChangeListener(getSeekBarBackColorListener());
+        seekBarCurlsBackColG.setOnSeekBarChangeListener(getSeekBarBackColorListener());
+        seekBarCurlsBackColB.setOnSeekBarChangeListener(getSeekBarBackColorListener());
 
 
 
@@ -668,5 +320,232 @@ public class CurlsActivity extends AppCompatActivity {
     private void updateBackColorIndicatorBack() {
         int color = Color.rgb(backColorR, backColorG, backColorB);
         viewCurlsBackColor.setBackgroundColor(color);
+    }
+    private void getSeekBarsOneBar () {
+        seekBarCurlsImSizeX = findViewById(R.id.seekBarCurlsImSizeX);
+        seekBarCurlsImSizeY = findViewById(R.id.seekBarCurlsImSizeY);
+        seekBarCurlsStepsQnty = findViewById(R.id.seekBarCurlsStepsQnty);
+        seekBarCurlsBranchLen = findViewById(R.id.seekBarCurlsBranchLen);
+        seekBarCurlsAngleShiftLim = findViewById(R.id.seekBarCurlsAngleShiftLim);
+        seekBarCurlsAngleShiftPlus = findViewById(R.id.seekBarCurlsAngleShiftPlus);
+        seekBarCurlsLineWidth = findViewById(R.id.seekBarCurlsLineWidth);
+        seekBarLineToNewLine = findViewById(R.id.seekBarLineToNewLine);
+        seekBarCurlsTreesQnty = findViewById(R.id.seekBarCurlsTreesQnty);
+    }
+    private void getTextViews () {
+        textViewCurlsImWidth = findViewById(R.id.textViewCurlsImWidth);
+        textViewCurlsImHeight = findViewById(R.id.textViewCurlsImHeight);
+        textViewCurlsSteps = findViewById(R.id.textViewCurlsSteps);
+        textViewCurlsBranchLenght = findViewById(R.id.textViewCurlsBranchLenght);
+        textViewCurlsAShiftMax = findViewById(R.id.textViewCurlsAShiftMax);
+        textViewAShiftPlus = findViewById(R.id.textViewAShiftPlus);
+        textViewCurlsLineWidthL = findViewById(R.id.textViewCurlsLineWidthL);
+        textViewLineToNewLine = findViewById(R.id.textViewLineToNewLine);
+        textViewCurlsTreesQntyCntr = findViewById(R.id.textViewCurlsTreesQntyCntr);
+    }
+    private void getForStartColor () {
+        seekBarCurlsStartColorR = findViewById(R.id.seekBarCurlsStartColorR);
+        seekBarCurlsStartColorG = findViewById(R.id.seekBarCurlsStartColorG);
+        seekBarCurlsStartColorB = findViewById(R.id.seekBarCurlsStartColorB);
+        viewCurlsStartColor = findViewById(R.id.viewCurlsStartColor);
+    }
+    private void getForFinishColor () {
+        seekBarCurlsFinishColorR = findViewById(R.id.seekBarCurlsFinishColorR);
+        seekBarCurlsFinishColorG = findViewById(R.id.seekBarCurlsFinishColorG);
+        seekBarCurlsFinishColorB = findViewById(R.id.seekBarCurlsFinishColorB);
+        viewCurlsFinishColor = findViewById(R.id.viewCurlsFinishColor);
+    }
+    private void getForBackColor () {
+        seekBarCurlsBackColR = findViewById(R.id.seekBarCurlsBackColR);
+        seekBarCurlsBackColG = findViewById(R.id.seekBarCurlsBackColG);
+        seekBarCurlsBackColB = findViewById(R.id.seekBarCurlsBackColB);
+        viewCurlsBackColor = findViewById(R.id.viewCurlsBackColor);
+    }
+    private void getDefaultColors () {
+        startColorR = 100;
+        startColorG = 100;
+        startColorB = 100;
+        finishColorR = 100;
+        finishColorG = 100;
+        finishColorB = 100;
+        backColorR = 100;
+        backColorG = 100;
+        backColorB = 100;
+    }
+    private void getParametersName () {
+        textViewCurlsmageSizeX = findViewById(R.id.textViewCurlsmageSizeX);
+        textViewCurlsImageSizeY = findViewById(R.id.textViewCurlsImageSizeY);
+        textViewCurlsStepsQnty = findViewById(R.id.textViewCurlsStepsQnty);
+        textViewCurlsBranchLen = findViewById(R.id.textViewCurlsBranchLen);
+        textViewCurlsAngleShiftMax = findViewById(R.id.textViewCurlsAngleShiftMax);
+        textViewAngleShiftPlus = findViewById(R.id.textViewAngleShiftPlus);
+        textViewCurlsLineWidth = findViewById(R.id.textViewCurlsLineWidth);
+        textViewCurlsStartColor = findViewById(R.id.textViewCurlsStartColor);
+        textViewCurlsFinishColor = findViewById(R.id.textViewCurlsFinishColor);
+        textViewCurlsBackColor = findViewById(R.id.textViewCurlsBackColor);
+        textViewStarttoNewLine = findViewById(R.id.textViewStarttoNewLine);
+        textViewCurlsTreesQnty = findViewById(R.id.textViewCurlsTreesQnty);
+    }
+    private View.OnClickListener getOnClickListener (String title, String message) {
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(CurlsActivity.this)
+                        .setTitle(title)
+                        .setMessage(message)
+                        .show();
+            }
+        };
+        return onClickListener;
+    }
+    private void getColors (SharedPreferences sharedPreferences) {
+        startColorR = sharedPreferences.getInt("startColorR", -1);
+        startColorG = sharedPreferences.getInt("startColorG", -1);
+        startColorB = sharedPreferences.getInt("startColorB", -1);
+        finishColorR = sharedPreferences.getInt("finishColorR", -1);
+        finishColorG = sharedPreferences.getInt("finishColorG", -1);
+        finishColorB = sharedPreferences.getInt("finishColorB", -1);
+        backColorR = sharedPreferences.getInt("backColorR", -1);
+        backColorG = sharedPreferences.getInt("backColorG", -1);
+        backColorB = sharedPreferences.getInt("backColorB", -1);
+    }
+
+    private SeekBar.OnSeekBarChangeListener getListenerForOneBarParameters () {
+        SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (seekBar.getId() == seekBarCurlsImSizeX.getId()) {
+                    textViewCurlsImWidth.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarCurlsImSizeY.getId()) {
+                    textViewCurlsImHeight.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarCurlsLineWidth.getId()) {
+                    textViewCurlsLineWidthL.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarCurlsStepsQnty.getId()) {
+                    textViewCurlsSteps.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarCurlsBranchLen.getId()) {
+                    textViewCurlsBranchLenght.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarCurlsAngleShiftLim.getId()) {
+                    textViewCurlsAShiftMax.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarCurlsAngleShiftPlus.getId()) {
+                    textViewAShiftPlus.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarLineToNewLine.getId()) {
+                    textViewLineToNewLine.setText(String.valueOf(progress));
+                }
+                else if (seekBar.getId() == seekBarCurlsTreesQnty.getId()) {
+                    textViewCurlsTreesQntyCntr.setText(String.valueOf(progress));
+                }
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        };
+        return seekBarChangeListener;
+    }
+    private View.OnClickListener getBackButtonListener () {
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CurlsActivity.this, GeneratorsActicity.class);
+                startActivity(intent);
+            }
+        };
+        return onClickListener;
+    }
+    private SeekBar.OnSeekBarChangeListener getSeekBarStartColorListener () {
+        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (seekBar.getId() == seekBarCurlsStartColorR.getId()) {
+                    startColorR = seekBar.getProgress();
+                }
+                if (seekBar.getId() == seekBarCurlsStartColorG.getId()) {
+                    startColorG = seekBar.getProgress();
+                }
+                if (seekBar.getId() == seekBarCurlsStartColorB.getId()) {
+                    startColorB = seekBar.getProgress();
+                }
+                updateColorIndicatorStart();
+            }
+
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        };
+        return listener;
+    }
+
+    private SeekBar.OnSeekBarChangeListener getSeekBarFinishColorListener () {
+        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (seekBar.getId() == seekBarCurlsFinishColorR.getId()) {
+                    finishColorR = seekBar.getProgress();
+                }
+                if (seekBar.getId() == seekBarCurlsFinishColorG.getId()) {
+                    finishColorG = seekBar.getProgress();
+                }
+                if (seekBar.getId() == seekBarCurlsFinishColorB.getId()) {
+                    finishColorB = seekBar.getProgress();
+                }
+                updateColorIndicatorFinish();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        };
+        return listener;
+    }
+
+    private SeekBar.OnSeekBarChangeListener getSeekBarBackColorListener () {
+        SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (seekBar.getId() == seekBarCurlsBackColR.getId()) {
+                    backColorR = seekBar.getProgress();
+                }
+                if (seekBar.getId() == seekBarCurlsBackColG.getId()) {
+                    backColorG = seekBar.getProgress();
+                }
+                if (seekBar.getId() == seekBarCurlsBackColB.getId()) {
+                    backColorB = seekBar.getProgress();
+                }
+                updateBackColorIndicatorBack();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        };
+        return listener;
     }
 }
