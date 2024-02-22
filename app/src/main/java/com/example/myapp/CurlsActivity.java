@@ -49,7 +49,8 @@ public class CurlsActivity extends AppCompatActivity {
     private SeekBar seekBarCurlsBackColR, seekBarCurlsBackColG, seekBarCurlsBackColB;
     private View viewCurlsBackColor;
     private int backColorR, backColorG, backColorB;
-    int curlsImWidth, curlsImheight, curlsSteps, curlsBranchLenght, curlsAShiftMax, curlsAShiftPlus, curlsLineWidthL, curlsLineToNewLine, curlsTreesQntyCntr;
+
+    private int curlsImWidth, curlsImheight, curlsSteps, curlsBranchLenght, curlsAShiftMax, curlsAShiftPlus, curlsLineWidthL, curlsLineToNewLine, curlsTreesQntyCntr;
 
     @Override
     protected void onPause() {
@@ -88,8 +89,8 @@ public class CurlsActivity extends AppCompatActivity {
 
         getColors(sharedPreferences);
         getSettingsPreferences(sharedPreferences);
-        resumePreferences ();
         resumeColors();
+        resumePreferences();
     }
 
 
@@ -436,15 +437,15 @@ public class CurlsActivity extends AppCompatActivity {
         return listener;
     }
     private void getSettingsPreferences (SharedPreferences sharedPreferences) {
-        int curlsImWidth = sharedPreferences.getInt("curlsImWidth", -1);
-        int curlsImheight = sharedPreferences.getInt("curlsImheight", -1);
-        int curlsSteps = sharedPreferences.getInt("curlsSteps", -1);
-        int curlsBranchLenght = sharedPreferences.getInt("curlsBranchLenght", -1);
-        int curlsAShiftMax = sharedPreferences.getInt("curlsAShiftMax", -1);
-        int curlsAShiftPlus = sharedPreferences.getInt("curlsAShiftPlus", -1);
-        int curlsLineWidthL = sharedPreferences.getInt("curlsLineWidthL", -1);
-        int curlsLineToNewLine = sharedPreferences.getInt("curlsLineToNewLine", -1);
-        int curlsTreesQntyCntr = sharedPreferences.getInt("curlsTreesQntyCntr", -1);
+        curlsImWidth = sharedPreferences.getInt("curlsImWidth", -1);
+        curlsImheight = sharedPreferences.getInt("curlsImheight", -1);
+        curlsSteps = sharedPreferences.getInt("curlsSteps", -1);
+        curlsBranchLenght = sharedPreferences.getInt("curlsBranchLenght", -1);
+        curlsAShiftMax = sharedPreferences.getInt("curlsAShiftMax", -1);
+        curlsAShiftPlus = sharedPreferences.getInt("curlsAShiftPlus", -1);
+        curlsLineWidthL = sharedPreferences.getInt("curlsLineWidthL", -1);
+        curlsLineToNewLine = sharedPreferences.getInt("curlsLineToNewLine", -1);
+        curlsTreesQntyCntr = sharedPreferences.getInt("curlsTreesQntyCntr", -1);
     }
     private void resumePreferences () {
         if (curlsImWidth != -1) {
