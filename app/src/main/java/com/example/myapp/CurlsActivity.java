@@ -49,33 +49,24 @@ public class CurlsActivity extends AppCompatActivity {
     private SeekBar seekBarCurlsBackColR, seekBarCurlsBackColG, seekBarCurlsBackColB;
     private View viewCurlsBackColor;
     private int backColorR, backColorG, backColorB;
+    int curlsImWidth, curlsImheight, curlsSteps, curlsBranchLenght, curlsAShiftMax, curlsAShiftPlus, curlsLineWidthL, curlsLineToNewLine, curlsTreesQntyCntr;
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        int curlsImWidth = seekBarCurlsImSizeX.getProgress();
-        int curlsImheight = seekBarCurlsImSizeY.getProgress();
-        int curlsSteps = seekBarCurlsStepsQnty.getProgress();
-        int curlsBranchLenght = seekBarCurlsBranchLen.getProgress();
-        int curlsAShiftMax = seekBarCurlsAngleShiftLim.getProgress();
-        int curlsAShiftPlus = seekBarCurlsAngleShiftPlus.getProgress();
-        int curlsLineWidthL = seekBarCurlsLineWidth.getProgress();
-        int curlsLineToNewLine = seekBarLineToNewLine.getProgress();
-        int curlsTreesQntyCntr = seekBarCurlsTreesQnty.getProgress();
-
         SharedPreferences sharedPreferences = getSharedPreferences("CurlsSettings", MODE_PRIVATE);
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt("curlsImWidth", curlsImWidth);
-        editor.putInt("curlsImheight", curlsImheight);
-        editor.putInt("curlsSteps", curlsSteps);
-        editor.putInt("curlsBranchLenght", curlsBranchLenght);
-        editor.putInt("curlsAShiftMax", curlsAShiftMax);
-        editor.putInt("curlsAShiftPlus", curlsAShiftPlus);
-        editor.putInt("curlsLineWidthL", curlsLineWidthL);
-        editor.putInt("curlsLineToNewLine", curlsLineToNewLine);
-        editor.putInt("curlsTreesQntyCntr", curlsTreesQntyCntr);
+        editor.putInt("curlsImWidth", seekBarCurlsImSizeX.getProgress());
+        editor.putInt("curlsImheight", seekBarCurlsImSizeY.getProgress());
+        editor.putInt("curlsSteps", seekBarCurlsStepsQnty.getProgress());
+        editor.putInt("curlsBranchLenght", seekBarCurlsBranchLen.getProgress());
+        editor.putInt("curlsAShiftMax", seekBarCurlsAngleShiftLim.getProgress());
+        editor.putInt("curlsAShiftPlus", seekBarCurlsAngleShiftPlus.getProgress());
+        editor.putInt("curlsLineWidthL", seekBarCurlsLineWidth.getProgress());
+        editor.putInt("curlsLineToNewLine", seekBarLineToNewLine.getProgress());
+        editor.putInt("curlsTreesQntyCntr", seekBarCurlsTreesQnty.getProgress());
 
         editor.putInt("startColorR", startColorR);
         editor.putInt("startColorG", startColorG);
@@ -96,90 +87,9 @@ public class CurlsActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("CurlsSettings", MODE_PRIVATE);
 
         getColors(sharedPreferences);
-
-        int curlsImWidth = sharedPreferences.getInt("curlsImWidth", -1);
-        int curlsImheight = sharedPreferences.getInt("curlsImheight", -1);
-        int curlsSteps = sharedPreferences.getInt("curlsSteps", -1);
-        int curlsBranchLenght = sharedPreferences.getInt("curlsBranchLenght", -1);
-        int curlsAShiftMax = sharedPreferences.getInt("curlsAShiftMax", -1);
-        int curlsAShiftPlus = sharedPreferences.getInt("curlsAShiftPlus", -1);
-        int curlsLineWidthL = sharedPreferences.getInt("curlsLineWidthL", -1);
-        int curlsLineToNewLine = sharedPreferences.getInt("curlsLineToNewLine", -1);
-        int curlsTreesQntyCntr = sharedPreferences.getInt("curlsTreesQntyCntr", -1);
-
-        if (curlsImWidth != -1) {
-            textViewCurlsImWidth.setText(String.valueOf(curlsImWidth));
-            seekBarCurlsImSizeX.setProgress(curlsImWidth);
-        }
-        if (curlsImheight != -1) {
-            textViewCurlsImHeight.setText(String.valueOf(curlsImheight));
-            seekBarCurlsImSizeY.setProgress(curlsImheight);
-        }
-        if (curlsSteps != -1) {
-            textViewCurlsSteps.setText(String.valueOf(curlsSteps));
-            seekBarCurlsStepsQnty.setProgress(curlsSteps);
-        }
-        if (curlsBranchLenght != -1) {
-            textViewCurlsBranchLenght.setText(String.valueOf(curlsBranchLenght));
-            seekBarCurlsBranchLen.setProgress(curlsBranchLenght);
-        }
-        if (curlsAShiftMax != -1) {
-            textViewCurlsAShiftMax.setText(String.valueOf(curlsAShiftMax));
-            seekBarCurlsAngleShiftLim.setProgress(curlsAShiftMax);
-        }
-        if (curlsAShiftPlus != -1) {
-            textViewAShiftPlus.setText(String.valueOf(curlsAShiftPlus));
-            seekBarCurlsAngleShiftPlus.setProgress(curlsAShiftPlus);
-        }
-        if (curlsLineWidthL != -1) {
-            textViewCurlsLineWidthL.setText(String.valueOf(curlsLineWidthL));
-            seekBarCurlsLineWidth.setProgress(curlsLineWidthL);
-        }
-        if (curlsLineToNewLine != -1) {
-            textViewLineToNewLine.setText(String.valueOf(curlsLineToNewLine));
-            seekBarLineToNewLine.setProgress(curlsLineToNewLine);
-        }
-        if (curlsTreesQntyCntr != -1) {
-            textViewCurlsTreesQntyCntr.setText(String.valueOf(curlsTreesQntyCntr));
-            seekBarCurlsTreesQnty.setProgress(curlsTreesQntyCntr);
-        }
-
-        if (startColorR != -1) {
-            seekBarCurlsStartColorR.setProgress(startColorR);
-            updateColorIndicatorStart();
-        }
-        if (startColorG != -1) {
-            seekBarCurlsStartColorG.setProgress(startColorG);
-            updateColorIndicatorStart();
-        }
-        if (startColorB != -1) {
-            seekBarCurlsStartColorB.setProgress(startColorB);
-            updateColorIndicatorStart();
-        }
-        if (finishColorR != -1) {
-            seekBarCurlsFinishColorR.setProgress(finishColorR);
-            updateColorIndicatorFinish();
-        }
-        if (finishColorG != -1) {
-            seekBarCurlsFinishColorG.setProgress(finishColorG);
-            updateColorIndicatorFinish();
-        }
-        if (finishColorB != -1) {
-            seekBarCurlsFinishColorB.setProgress(finishColorB);
-            updateColorIndicatorFinish();
-        }
-        if (backColorR != -1) {
-            seekBarCurlsBackColR.setProgress(backColorR);
-            updateBackColorIndicatorBack();
-        }
-        if (backColorG != -1) {
-            seekBarCurlsBackColG.setProgress(backColorG);
-            updateBackColorIndicatorBack();
-        }
-        if (backColorB != -1) {
-            seekBarCurlsBackColB.setProgress(backColorB);
-            updateBackColorIndicatorBack();
-        }
+        getSettingsPreferences(sharedPreferences);
+        resumePreferences ();
+        resumeColors();
     }
 
 
@@ -189,6 +99,7 @@ public class CurlsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curls);
 
+        textViewCurlsHeader = findViewById(R.id.textViewCurlsHeader);
         getSeekBarsOneBar();
         getTextViews();
         getForStartColor();
@@ -196,18 +107,9 @@ public class CurlsActivity extends AppCompatActivity {
         getForBackColor();
         getDefaultColors();
         getParametersName();
-        textViewCurlsHeader = findViewById(R.id.textViewCurlsHeader);
 
         SeekBar.OnSeekBarChangeListener listenerForOneBarParameters = getListenerForOneBarParameters();
-        seekBarCurlsImSizeX.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarCurlsImSizeY.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarCurlsStepsQnty.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarCurlsBranchLen.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarCurlsAngleShiftLim.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarCurlsAngleShiftPlus.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarCurlsLineWidth.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarLineToNewLine.setOnSeekBarChangeListener(listenerForOneBarParameters);
-        seekBarCurlsTreesQnty.setOnSeekBarChangeListener(listenerForOneBarParameters);
+        setListenerForOneBarSeekBar (listenerForOneBarParameters);
 
         textViewCurlsmageSizeX.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_width), getResources().getString(R.string.explanation_size_x)));
         textViewCurlsImageSizeY.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_height), getResources().getString(R.string.explanation_size_y)));
@@ -250,35 +152,20 @@ public class CurlsActivity extends AppCompatActivity {
                 backButton.setEnabled(false);
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-                int stepQnty = seekBarCurlsStepsQnty.getProgress();
-                int branchStartFromBranch = seekBarLineToNewLine.getProgress();
-                int startColor = ((ColorDrawable) viewCurlsStartColor.getBackground()).getColor();
-                int finishColor = ((ColorDrawable) viewCurlsFinishColor.getBackground()).getColor();
-                int branchLenght = seekBarCurlsBranchLen.getProgress();
-                int angleShiftLim = seekBarCurlsAngleShiftLim.getProgress();
-                int angleShiftPlus = seekBarCurlsAngleShiftPlus.getProgress();
-                int lineWidth = seekBarCurlsLineWidth.getProgress();
-                boolean isTextureMode = true;
-                int treesQnty = seekBarCurlsTreesQnty.getProgress();
-
-                int backCol = ((ColorDrawable) viewCurlsBackColor.getBackground()).getColor();
-                int width = seekBarCurlsImSizeX.getProgress();
-                int height = seekBarCurlsImSizeY.getProgress();
-
                 Callable<Bitmap> curlsGeneratorCallable = new CurlsGeneratorCallable(
-                        stepQnty,
-                        branchStartFromBranch,
-                        startColor,
-                        finishColor,
-                        branchLenght,
-                        angleShiftLim,
-                        angleShiftPlus,
-                        lineWidth,
+                        seekBarCurlsStepsQnty.getProgress(),
+                        seekBarLineToNewLine.getProgress(),
+                        ((ColorDrawable) viewCurlsStartColor.getBackground()).getColor(),
+                        ((ColorDrawable) viewCurlsFinishColor.getBackground()).getColor(),
+                        seekBarCurlsBranchLen.getProgress(),
+                        seekBarCurlsAngleShiftLim.getProgress(),
+                        seekBarCurlsAngleShiftPlus.getProgress(),
+                        seekBarCurlsLineWidth.getProgress(),
                         true,
-                        backCol,
-                        width,
-                        height,
-                        treesQnty);
+                        ((ColorDrawable) viewCurlsBackColor.getBackground()).getColor(),
+                        seekBarCurlsImSizeX.getProgress(),
+                        seekBarCurlsImSizeY.getProgress(),
+                        seekBarCurlsTreesQnty.getProgress());
                 Future<Bitmap> futureResult = executorService.submit(curlsGeneratorCallable);
 
                 executorService.submit(new Runnable() {
@@ -547,5 +434,117 @@ public class CurlsActivity extends AppCompatActivity {
             }
         };
         return listener;
+    }
+    private void getSettingsPreferences (SharedPreferences sharedPreferences) {
+        int curlsImWidth = sharedPreferences.getInt("curlsImWidth", -1);
+        int curlsImheight = sharedPreferences.getInt("curlsImheight", -1);
+        int curlsSteps = sharedPreferences.getInt("curlsSteps", -1);
+        int curlsBranchLenght = sharedPreferences.getInt("curlsBranchLenght", -1);
+        int curlsAShiftMax = sharedPreferences.getInt("curlsAShiftMax", -1);
+        int curlsAShiftPlus = sharedPreferences.getInt("curlsAShiftPlus", -1);
+        int curlsLineWidthL = sharedPreferences.getInt("curlsLineWidthL", -1);
+        int curlsLineToNewLine = sharedPreferences.getInt("curlsLineToNewLine", -1);
+        int curlsTreesQntyCntr = sharedPreferences.getInt("curlsTreesQntyCntr", -1);
+    }
+    private void resumePreferences () {
+        if (curlsImWidth != -1) {
+            textViewCurlsImWidth.setText(String.valueOf(curlsImWidth));
+            seekBarCurlsImSizeX.setProgress(curlsImWidth);
+        }
+        if (curlsImheight != -1) {
+            textViewCurlsImHeight.setText(String.valueOf(curlsImheight));
+            seekBarCurlsImSizeY.setProgress(curlsImheight);
+        }
+        if (curlsSteps != -1) {
+            textViewCurlsSteps.setText(String.valueOf(curlsSteps));
+            seekBarCurlsStepsQnty.setProgress(curlsSteps);
+        }
+        if (curlsBranchLenght != -1) {
+            textViewCurlsBranchLenght.setText(String.valueOf(curlsBranchLenght));
+            seekBarCurlsBranchLen.setProgress(curlsBranchLenght);
+        }
+        if (curlsAShiftMax != -1) {
+            textViewCurlsAShiftMax.setText(String.valueOf(curlsAShiftMax));
+            seekBarCurlsAngleShiftLim.setProgress(curlsAShiftMax);
+        }
+        if (curlsAShiftPlus != -1) {
+            textViewAShiftPlus.setText(String.valueOf(curlsAShiftPlus));
+            seekBarCurlsAngleShiftPlus.setProgress(curlsAShiftPlus);
+        }
+        if (curlsLineWidthL != -1) {
+            textViewCurlsLineWidthL.setText(String.valueOf(curlsLineWidthL));
+            seekBarCurlsLineWidth.setProgress(curlsLineWidthL);
+        }
+        if (curlsLineToNewLine != -1) {
+            textViewLineToNewLine.setText(String.valueOf(curlsLineToNewLine));
+            seekBarLineToNewLine.setProgress(curlsLineToNewLine);
+        }
+        if (curlsTreesQntyCntr != -1) {
+            textViewCurlsTreesQntyCntr.setText(String.valueOf(curlsTreesQntyCntr));
+            seekBarCurlsTreesQnty.setProgress(curlsTreesQntyCntr);
+        }
+    }
+    private void resumeColors () {
+        if (startColorR != -1) {
+            seekBarCurlsStartColorR.setProgress(startColorR);
+            updateColorIndicatorStart();
+        }
+        if (startColorG != -1) {
+            seekBarCurlsStartColorG.setProgress(startColorG);
+            updateColorIndicatorStart();
+        }
+        if (startColorB != -1) {
+            seekBarCurlsStartColorB.setProgress(startColorB);
+            updateColorIndicatorStart();
+        }
+        if (finishColorR != -1) {
+            seekBarCurlsFinishColorR.setProgress(finishColorR);
+            updateColorIndicatorFinish();
+        }
+        if (finishColorG != -1) {
+            seekBarCurlsFinishColorG.setProgress(finishColorG);
+            updateColorIndicatorFinish();
+        }
+        if (finishColorB != -1) {
+            seekBarCurlsFinishColorB.setProgress(finishColorB);
+            updateColorIndicatorFinish();
+        }
+        if (backColorR != -1) {
+            seekBarCurlsBackColR.setProgress(backColorR);
+            updateBackColorIndicatorBack();
+        }
+        if (backColorG != -1) {
+            seekBarCurlsBackColG.setProgress(backColorG);
+            updateBackColorIndicatorBack();
+        }
+        if (backColorB != -1) {
+            seekBarCurlsBackColB.setProgress(backColorB);
+            updateBackColorIndicatorBack();
+        }
+    }
+    private void setListenerForOneBarSeekBar (SeekBar.OnSeekBarChangeListener listener) {
+        seekBarCurlsImSizeX.setOnSeekBarChangeListener(listener);
+        seekBarCurlsImSizeY.setOnSeekBarChangeListener(listener);
+        seekBarCurlsStepsQnty.setOnSeekBarChangeListener(listener);
+        seekBarCurlsBranchLen.setOnSeekBarChangeListener(listener);
+        seekBarCurlsAngleShiftLim.setOnSeekBarChangeListener(listener);
+        seekBarCurlsAngleShiftPlus.setOnSeekBarChangeListener(listener);
+        seekBarCurlsLineWidth.setOnSeekBarChangeListener(listener);
+        seekBarLineToNewLine.setOnSeekBarChangeListener(listener);
+        seekBarCurlsTreesQnty.setOnSeekBarChangeListener(listener);
+    }
+    private void setClickListenerOnTextView () {
+        textViewCurlsmageSizeX.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_width), getResources().getString(R.string.explanation_size_x)));
+        textViewCurlsImageSizeY.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_height), getResources().getString(R.string.explanation_size_y)));
+        textViewCurlsStepsQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.steps_qnty), getResources().getString(R.string.explanation_steps_qnty)));
+        textViewCurlsBranchLen.setOnClickListener(getOnClickListener(getResources().getString(R.string.branch_lenght), getResources().getString(R.string.explanation_branch_lenght)));
+        textViewCurlsAngleShiftMax.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_max), getResources().getString(R.string.explanation_angle_shift_max)));
+        textViewAngleShiftPlus.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_plus), getResources().getString(R.string.explanation_angle_shift_plus)));
+        textViewCurlsStartColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.start_color), getResources().getString(R.string.explanation_start_color)));
+        textViewCurlsFinishColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.finish_color), getResources().getString(R.string.explanation_finish_color)));
+        textViewCurlsBackColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.background_color), getResources().getString(R.string.explanation_background_color)));
+        textViewStarttoNewLine.setOnClickListener(getOnClickListener(getResources().getString(R.string.lines_to_new_line), getResources().getString(R.string.explanation_LTNL)));
+        textViewCurlsTreesQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.trees_qnty_exp), getResources().getString(R.string.explanation_trees_qnty)));
+        textViewCurlsHeader.setOnClickListener(getOnClickListener(getResources().getString(R.string.line_width), getResources().getString(R.string.explanation_line_width)));
     }
 }
