@@ -51,41 +51,20 @@ public class CurlsActivity extends AppCompatActivity {
     private int backColorR, backColorG, backColorB;
 
     private int curlsImWidth, curlsImheight, curlsSteps, curlsBranchLenght, curlsAShiftMax, curlsAShiftPlus, curlsLineWidthL, curlsLineToNewLine, curlsTreesQntyCntr;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        SharedPreferences sharedPreferences = getSharedPreferences("CurlsSettings", MODE_PRIVATE);
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt("curlsImWidth", seekBarCurlsImSizeX.getProgress());
-        editor.putInt("curlsImheight", seekBarCurlsImSizeY.getProgress());
-        editor.putInt("curlsSteps", seekBarCurlsStepsQnty.getProgress());
-        editor.putInt("curlsBranchLenght", seekBarCurlsBranchLen.getProgress());
-        editor.putInt("curlsAShiftMax", seekBarCurlsAngleShiftLim.getProgress());
-        editor.putInt("curlsAShiftPlus", seekBarCurlsAngleShiftPlus.getProgress());
-        editor.putInt("curlsLineWidthL", seekBarCurlsLineWidth.getProgress());
-        editor.putInt("curlsLineToNewLine", seekBarLineToNewLine.getProgress());
-        editor.putInt("curlsTreesQntyCntr", seekBarCurlsTreesQnty.getProgress());
-
-        editor.putInt("startColorR", startColorR);
-        editor.putInt("startColorG", startColorG);
-        editor.putInt("startColorB", startColorB);
-        editor.putInt("finishColorR", finishColorR);
-        editor.putInt("finishColorG", finishColorG);
-        editor.putInt("finishColorB", finishColorB);
-        editor.putInt("backColorR", backColorR);
-        editor.putInt("backColorG", backColorG);
-        editor.putInt("backColorB", backColorB);
-        editor.apply();
+        putOnPauseValues(editor);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        SharedPreferences sharedPreferences = getSharedPreferences("CurlsSettings", MODE_PRIVATE);
 
         getColors(sharedPreferences);
         getSettingsPreferences(sharedPreferences);
@@ -100,6 +79,7 @@ public class CurlsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curls);
 
+        sharedPreferences = getSharedPreferences("CurlsSettings", MODE_PRIVATE);
         textViewCurlsHeader = findViewById(R.id.textViewCurlsHeader);
         getSeekBarsOneBar();
         getTextViews();
@@ -111,39 +91,11 @@ public class CurlsActivity extends AppCompatActivity {
 
         SeekBar.OnSeekBarChangeListener listenerForOneBarParameters = getListenerForOneBarParameters();
         setListenerForOneBarSeekBar (listenerForOneBarParameters);
-
-        textViewCurlsmageSizeX.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_width), getResources().getString(R.string.explanation_size_x)));
-        textViewCurlsImageSizeY.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_height), getResources().getString(R.string.explanation_size_y)));
-        textViewCurlsStepsQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.steps_qnty), getResources().getString(R.string.explanation_steps_qnty)));
-        textViewCurlsBranchLen.setOnClickListener(getOnClickListener(getResources().getString(R.string.branch_lenght), getResources().getString(R.string.explanation_branch_lenght)));
-        textViewCurlsAngleShiftMax.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_max), getResources().getString(R.string.explanation_angle_shift_max)));
-        textViewAngleShiftPlus.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_plus), getResources().getString(R.string.explanation_angle_shift_plus)));
-        textViewCurlsStartColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.start_color), getResources().getString(R.string.explanation_start_color)));
-        textViewCurlsFinishColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.finish_color), getResources().getString(R.string.explanation_finish_color)));
-        textViewCurlsBackColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.background_color), getResources().getString(R.string.explanation_background_color)));
-        textViewStarttoNewLine.setOnClickListener(getOnClickListener(getResources().getString(R.string.lines_to_new_line), getResources().getString(R.string.explanation_LTNL)));
-        textViewCurlsTreesQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.trees_qnty_exp), getResources().getString(R.string.explanation_trees_qnty)));
-        textViewCurlsHeader.setOnClickListener(getOnClickListener(getResources().getString(R.string.line_width), getResources().getString(R.string.explanation_line_width)));
-
-
-
-
         Button backButton = (Button) findViewById(R.id.buttonCurlsBack);
         backButton.setOnClickListener(getBackButtonListener());
 
-        seekBarCurlsStartColorR.setOnSeekBarChangeListener(getSeekBarStartColorListener());
-        seekBarCurlsStartColorG.setOnSeekBarChangeListener(getSeekBarStartColorListener());
-        seekBarCurlsStartColorB.setOnSeekBarChangeListener(getSeekBarStartColorListener());
-
-        seekBarCurlsFinishColorR.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
-        seekBarCurlsFinishColorG.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
-        seekBarCurlsFinishColorB.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
-
-        seekBarCurlsBackColR.setOnSeekBarChangeListener(getSeekBarBackColorListener());
-        seekBarCurlsBackColG.setOnSeekBarChangeListener(getSeekBarBackColorListener());
-        seekBarCurlsBackColB.setOnSeekBarChangeListener(getSeekBarBackColorListener());
-
-
+        setInfoOnClickListeners();
+        setColorsSeekBarOnChangeListener();
 
         Button runButton = (Button) findViewById(R.id.buttonCurlsRun);
         View.OnClickListener onClickListenerRun = new View.OnClickListener() {
@@ -184,8 +136,7 @@ public class CurlsActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
-                        } catch (
-                        ExecutionException e) {
+                        } catch (ExecutionException e) {
                             throw new RuntimeException(e);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
@@ -285,6 +236,33 @@ public class CurlsActivity extends AppCompatActivity {
             }
         };
         return onClickListener;
+    }
+    private void setInfoOnClickListeners () {
+        textViewCurlsmageSizeX.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_width), getResources().getString(R.string.explanation_size_x)));
+        textViewCurlsImageSizeY.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_height), getResources().getString(R.string.explanation_size_y)));
+        textViewCurlsStepsQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.steps_qnty), getResources().getString(R.string.explanation_steps_qnty)));
+        textViewCurlsBranchLen.setOnClickListener(getOnClickListener(getResources().getString(R.string.branch_lenght), getResources().getString(R.string.explanation_branch_lenght)));
+        textViewCurlsAngleShiftMax.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_max), getResources().getString(R.string.explanation_angle_shift_max)));
+        textViewAngleShiftPlus.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_plus), getResources().getString(R.string.explanation_angle_shift_plus)));
+        textViewCurlsStartColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.start_color), getResources().getString(R.string.explanation_start_color)));
+        textViewCurlsFinishColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.finish_color), getResources().getString(R.string.explanation_finish_color)));
+        textViewCurlsBackColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.background_color), getResources().getString(R.string.explanation_background_color)));
+        textViewStarttoNewLine.setOnClickListener(getOnClickListener(getResources().getString(R.string.lines_to_new_line), getResources().getString(R.string.explanation_LTNL)));
+        textViewCurlsTreesQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.trees_qnty_exp), getResources().getString(R.string.explanation_trees_qnty)));
+        textViewCurlsHeader.setOnClickListener(getOnClickListener(getResources().getString(R.string.line_width), getResources().getString(R.string.explanation_line_width)));
+    }
+    private void setColorsSeekBarOnChangeListener () {
+        seekBarCurlsStartColorR.setOnSeekBarChangeListener(getSeekBarStartColorListener());
+        seekBarCurlsStartColorG.setOnSeekBarChangeListener(getSeekBarStartColorListener());
+        seekBarCurlsStartColorB.setOnSeekBarChangeListener(getSeekBarStartColorListener());
+
+        seekBarCurlsFinishColorR.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
+        seekBarCurlsFinishColorG.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
+        seekBarCurlsFinishColorB.setOnSeekBarChangeListener(getSeekBarFinishColorListener());
+
+        seekBarCurlsBackColR.setOnSeekBarChangeListener(getSeekBarBackColorListener());
+        seekBarCurlsBackColG.setOnSeekBarChangeListener(getSeekBarBackColorListener());
+        seekBarCurlsBackColB.setOnSeekBarChangeListener(getSeekBarBackColorListener());
     }
     private void getColors (SharedPreferences sharedPreferences) {
         startColorR = sharedPreferences.getInt("startColorR", -1);
@@ -534,18 +512,26 @@ public class CurlsActivity extends AppCompatActivity {
         seekBarLineToNewLine.setOnSeekBarChangeListener(listener);
         seekBarCurlsTreesQnty.setOnSeekBarChangeListener(listener);
     }
-    private void setClickListenerOnTextView () {
-        textViewCurlsmageSizeX.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_width), getResources().getString(R.string.explanation_size_x)));
-        textViewCurlsImageSizeY.setOnClickListener(getOnClickListener(getResources().getString(R.string.image_height), getResources().getString(R.string.explanation_size_y)));
-        textViewCurlsStepsQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.steps_qnty), getResources().getString(R.string.explanation_steps_qnty)));
-        textViewCurlsBranchLen.setOnClickListener(getOnClickListener(getResources().getString(R.string.branch_lenght), getResources().getString(R.string.explanation_branch_lenght)));
-        textViewCurlsAngleShiftMax.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_max), getResources().getString(R.string.explanation_angle_shift_max)));
-        textViewAngleShiftPlus.setOnClickListener(getOnClickListener(getResources().getString(R.string.angle_shift_plus), getResources().getString(R.string.explanation_angle_shift_plus)));
-        textViewCurlsStartColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.start_color), getResources().getString(R.string.explanation_start_color)));
-        textViewCurlsFinishColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.finish_color), getResources().getString(R.string.explanation_finish_color)));
-        textViewCurlsBackColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.background_color), getResources().getString(R.string.explanation_background_color)));
-        textViewStarttoNewLine.setOnClickListener(getOnClickListener(getResources().getString(R.string.lines_to_new_line), getResources().getString(R.string.explanation_LTNL)));
-        textViewCurlsTreesQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.trees_qnty_exp), getResources().getString(R.string.explanation_trees_qnty)));
-        textViewCurlsHeader.setOnClickListener(getOnClickListener(getResources().getString(R.string.line_width), getResources().getString(R.string.explanation_line_width)));
+    private void putOnPauseValues (SharedPreferences.Editor editor) {
+        editor.putInt("curlsImWidth", seekBarCurlsImSizeX.getProgress());
+        editor.putInt("curlsImheight", seekBarCurlsImSizeY.getProgress());
+        editor.putInt("curlsSteps", seekBarCurlsStepsQnty.getProgress());
+        editor.putInt("curlsBranchLenght", seekBarCurlsBranchLen.getProgress());
+        editor.putInt("curlsAShiftMax", seekBarCurlsAngleShiftLim.getProgress());
+        editor.putInt("curlsAShiftPlus", seekBarCurlsAngleShiftPlus.getProgress());
+        editor.putInt("curlsLineWidthL", seekBarCurlsLineWidth.getProgress());
+        editor.putInt("curlsLineToNewLine", seekBarLineToNewLine.getProgress());
+        editor.putInt("curlsTreesQntyCntr", seekBarCurlsTreesQnty.getProgress());
+
+        editor.putInt("startColorR", startColorR);
+        editor.putInt("startColorG", startColorG);
+        editor.putInt("startColorB", startColorB);
+        editor.putInt("finishColorR", finishColorR);
+        editor.putInt("finishColorG", finishColorG);
+        editor.putInt("finishColorB", finishColorB);
+        editor.putInt("backColorR", backColorR);
+        editor.putInt("backColorG", backColorG);
+        editor.putInt("backColorB", backColorB);
+        editor.apply();
     }
 }
