@@ -4,8 +4,8 @@
     <string name="button_start">Start wallpapering!</string>
     <string name="button_back">Back</string>
     <string name="drops_enter_button">Drops generator</string>
+    <string name="tiling_enter_button">Tiling generator</string>
     <string name="label_generators_header">Choose generator!</string>
-    <string name="label_drops_generator">Drops generator</string>
     <string name="edit_text_sizeX">Image width:</string>
     <string name="edit_text_sizeY">Image height:</string>
     <string name="label_params">Params: </string>
@@ -34,6 +34,14 @@
     <string name="start_to_new_line">line to new line:</string>
     <string name="trees_qnty">trees quantity:</string>
     <string name="ok">ok</string>
+    <string name="x_plates_qnty_x">Quantity of tiles in X-axis:</string>
+    <string name="x_plates_qnty_y">Quantity of tiles in Y-axis:</string>
+    <string name="incorrecct_image_width">Неверная ширина изображения</string>
+    <string name="incorrecct_image_height">Неверная высота изображения</string>
+    <string name="incorrecct_tiling_qnty_x">Неверное количество плиток по оси x</string>
+    <string name="incorrecct_tiling_qnty_y">Неверное количество плиток по оси y</string>
+    <string name="incorrecct_settings">Есть ошибка в настройках</string>
+
 
     <string name="explanation_size_x">Настройте ширину изображения</string>
     <string name="image_width">Ширина изображения</string>
@@ -59,8 +67,13 @@
     <string name="lines_to_new_line">Lines to new line</string>
     <string name="explanation_trees_qnty">Каждое изображение, сгенерированное данным генератором представляет собой множество деревьев из веток или единственное таковое. Этот параметр отвечает за количество деревьев</string>
     <string name="trees_qnty_exp">Количество деревьев</string>
+
     <string name="explanation_curls_generator">Как бы то ни было странно, данный генератор генерирует изображения с узором из "завитушек". Предоставлю вам возможность познать его самим</string>
     <string name="curls_generator">Curls generator</string>
+    <string name="explanation_drops_generator">Этот генератор - инструмент для создания изображений с каплями</string>
+    <string name="label_drops_generator">Drops generator</string>
+    <string name="explanation_tiling_header">Этот генератор - инструмент для создания изображений в виде паркета с плитками, выкрашенными в градиент</string>
+    <string name="tiling_header">Tiling generator</string>
 
 
     <string name="explanation_drops_quantity">Настройте количество капель. Они будут распределены равномерно по изображению</string>
@@ -73,4 +86,18 @@
     <string name="outline_width">Толщина обводки</string>
     <string name="explanation_outline_color">Настройте цвет обводки (каждая капля будет обведена, настройте цвет обводки)</string>
     <string name="outline_color">Цвет обводки</string>
+
+    <string name="quantity_of_plates_in_x_axis">Количество плиток по оси X</string>
+    <string name="explanation_quantity_of_plates_in_x_axis">Настройте количество плиток по оси X (сколько плиток будет в одном ряду)</string>
+    <string name="quantity_of_plates_in_y_axis">Количество плиток по оси Y</string>
+    <string name="explanation_quantity_of_plates_in_y_axis">Настройте количество плиток по оси Y (сколько плиток будет в одной колонне)</string>
+    <string name="explanation_outline_color_tiling">Выберите цвет обводки (каждая  плитка будет обведена, выберите цвет этой обводки)</string>
+    <string name="outline_color_tiling">Outline color</string>
+    <string name="explanation_outline_width_tiling">Выберите толщину обводки (каждая плитка будет обведена, выберите толщину обводки)</string>
+    <string name="outline_width_tiling">Outline width</string>
+
+    <string name="brightness_tiling">Brightness:</string>
+    <string name="brightness_label">Brightness</string>
+    <string name="explanation_brightness_label">Настройте яркость следующего изображения</string>
 </resources>
+

@@ -18,6 +18,12 @@
         android:theme="@style/Theme.MyApp"
         tools:targetApi="31">
         <activity
+            android:name=".TilingPictureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TilingActivity"
+            android:exported="false" />
+        <activity
             android:name=".CurlsPictureActivity"
             android:exported="false" />
         <activity

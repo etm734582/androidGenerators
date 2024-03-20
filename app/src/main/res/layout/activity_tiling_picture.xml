@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DropsPictureActivity">
+    tools:context=".TilingPictureActivity">
 
     <ImageView
-        android:id="@+id/imageViewPicDrops"
+        android:id="@+id/imageTilingViewShow"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
         app:layout_constraintHeight_percent="0.8"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="1"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <Button
-        android:id="@+id/buttonDropsShow"
+        android:id="@+id/buttonTilingShow"
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
@@ -27,29 +27,27 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPicDrops" />
+        app:layout_constraintTop_toBottomOf="@+id/imageTilingViewShow" />
 
     <Button
-        android:id="@+id/buttonDropsPicBack"
+        android:id="@+id/buttonTilingBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/button_back"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDropsShow"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTilingShow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPicDrops" />
+        app:layout_constraintTop_toBottomOf="@+id/imageTilingViewShow" />
 
     <Button
-        android:id="@+id/buttonDropsSave"
+        android:id="@+id/buttonTilingSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:text="@string/save"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.589"
-        app:layout_constraintStart_toEndOf="@+id/buttonDropsShow"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewPicDrops" />
-
+        app:layout_constraintStart_toEndOf="@+id/buttonTilingShow"
+        app:layout_constraintTop_toBottomOf="@+id/imageTilingViewShow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

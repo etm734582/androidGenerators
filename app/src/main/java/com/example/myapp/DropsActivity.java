@@ -139,10 +139,10 @@ public class DropsActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
-                        } catch (ExecutionException e) {
-                            throw new RuntimeException(e);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                        } catch (ExecutionException e) {  // ???
+                            throw new RuntimeException(e);  // ???
+                        } catch (InterruptedException e) {  // ???
+                            throw new RuntimeException(e);  // ???
                         }
 
                     }
@@ -235,6 +235,7 @@ public class DropsActivity extends AppCompatActivity {
         textViewDropsTailRadius.setOnClickListener(getLabelsOnClickListener(getResources().getString(R.string.tail_radius), getResources().getString(R.string.explanation_tail_radius)));
         textViewDropsOutlineWidth.setOnClickListener(getLabelsOnClickListener(getResources().getString(R.string.outline_width), getResources().getString(R.string.explanation_outline_width)));
         textViewDropsOutlineColor.setOnClickListener(getLabelsOnClickListener(getResources().getString(R.string.outline_color), getResources().getString(R.string.explanation_outline_color)));
+        textViewDropsHeader.setOnClickListener(getLabelsOnClickListener(getResources().getString(R.string.label_drops_generator), getResources().getString(R.string.explanation_drops_generator)));
     }
     private SeekBar.OnSeekBarChangeListener getSeekbarOneBarChangeListener () {
         SeekBar.OnSeekBarChangeListener listener = new SeekBar.OnSeekBarChangeListener() {

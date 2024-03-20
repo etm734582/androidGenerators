@@ -58,7 +58,6 @@ public class CurlsActivity extends AppCompatActivity {
         super.onPause();
 
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
-
         putOnPauseValues(editor);
     }
 
@@ -249,7 +248,7 @@ public class CurlsActivity extends AppCompatActivity {
         textViewCurlsBackColor.setOnClickListener(getOnClickListener(getResources().getString(R.string.background_color), getResources().getString(R.string.explanation_background_color)));
         textViewStarttoNewLine.setOnClickListener(getOnClickListener(getResources().getString(R.string.lines_to_new_line), getResources().getString(R.string.explanation_LTNL)));
         textViewCurlsTreesQnty.setOnClickListener(getOnClickListener(getResources().getString(R.string.trees_qnty_exp), getResources().getString(R.string.explanation_trees_qnty)));
-        textViewCurlsHeader.setOnClickListener(getOnClickListener(getResources().getString(R.string.line_width), getResources().getString(R.string.explanation_line_width)));
+        textViewCurlsHeader.setOnClickListener(getOnClickListener(getResources().getString(R.string.curls_generator), getResources().getString(R.string.explanation_curls_generator)));
     }
     private void setColorsSeekBarOnChangeListener () {
         seekBarCurlsStartColorR.setOnSeekBarChangeListener(getSeekBarStartColorListener());

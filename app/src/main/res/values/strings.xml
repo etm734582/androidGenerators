@@ -4,8 +4,8 @@
     <string name="button_start">Start wallpapering!</string>
     <string name="button_back">Back</string>
     <string name="drops_enter_button">Drops generator</string>
+    <string name="tiling_enter_button">Tiling generator</string>
     <string name="label_generators_header">Choose generator!</string>
-    <string name="label_drops_generator">Drops generator</string>
     <string name="edit_text_sizeX">Image width:</string>
     <string name="edit_text_sizeY">Image height:</string>
     <string name="label_params">Params: </string>
@@ -34,6 +34,13 @@
     <string name="start_to_new_line">line to new line:</string>
     <string name="trees_qnty">trees quantity:</string>
     <string name="ok">ok</string>
+    <string name="x_plates_qnty_x">Quantity of tiles in X-axis:</string>
+    <string name="x_plates_qnty_y">Quantity of tiles in Y-axis:</string>
+    <string name="incorrecct_image_width">Incorrecct image width</string>
+    <string name="incorrecct_image_height">Incorrecct image height</string>
+    <string name="incorrecct_tiling_qnty_x">Incorrecct tiles quantity on axis x</string>
+    <string name="incorrecct_tiling_qnty_y">Incorrecct tiles quantity on axis y</string>
+    <string name="incorrecct_settings">There is a mistake in gerenarors settings</string>
 
     <string name="explanation_size_x">Choose the image width</string>
     <string name="image_width">Image width</string>
@@ -59,8 +66,13 @@
     <string name="lines_to_new_line">Lines to new line</string>
     <string name="explanation_trees_qnty">Every "curls" generated pattern is a bunch of trees or once, choose number of such trees</string>
     <string name="trees_qnty_exp">Trees quantity</string>
+
     <string name="explanation_curls_generator">Strange as it may seem, curls generator is an instrument to generate pattern image with curls. I let you figure it out for yourself</string>
     <string name="curls_generator">Curls generator</string>
+    <string name="explanation_drops_generator">This generator is an instrument to make images with drops</string>
+    <string name="label_drops_generator">Drops generator</string>
+    <string name="explanation_tiling_header">This generator is an instrument to make gradient-colored parquet</string>
+    <string name="tiling_header">Tiling generator</string>
 
 
     <string name="explanation_drops_quantity">Choose the numder of drops. Drops will be distributed evenly throughout the image</string>
@@ -73,4 +85,17 @@
     <string name="outline_width">Outline width</string>
     <string name="explanation_outline_color">Choose the color of outline (every drop will be outlined, choose the color of outline)</string>
     <string name="outline_color">Outline color</string>
+
+    <string name="quantity_of_plates_in_x_axis">Quantity of plates in X-axis</string>
+    <string name="explanation_quantity_of_plates_in_x_axis">Set number of tiles in X-axis (how many tiles will be in one row)</string>
+    <string name="quantity_of_plates_in_y_axis">Quantity of plates in Y-axis</string>
+    <string name="explanation_quantity_of_plates_in_y_axis">Set number of tiles in Y-axis (how many tiles will be in one row)</string>
+    <string name="explanation_outline_color_tiling">Choose the color of outline (every tile will be outlined, choose the color of outline)</string>
+    <string name="outline_color_tiling">Outline color</string>
+    <string name="explanation_outline_width_tiling">Choose the width of outline (every tile will be outlined, choose the width of outline)</string>
+    <string name="outline_width_tiling">Outline width</string>
+
+    <string name="brightness_tiling">Brightness:</string>
+    <string name="brightness_label">Brightness</string>
+    <string name="explanation_brightness_label">Choose brightness of following image</string>
 </resources>

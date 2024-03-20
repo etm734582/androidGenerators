@@ -46,5 +46,15 @@ public class GeneratorsActicity extends AppCompatActivity {
             }
         };
         btnSwichToCurlsActivity.setOnClickListener(onClickListener2);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button btnSwichToTilingActivity = (Button) findViewById(R.id.buttonEnterTiling);
+        View.OnClickListener onClickListener3 = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(GeneratorsActicity.this, TilingActivity.class);
+                startActivity(intent3);
+            }
+        };
+        btnSwichToTilingActivity.setOnClickListener(onClickListener3);
     }
 }

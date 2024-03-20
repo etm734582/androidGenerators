@@ -6,7 +6,6 @@ import java.util.BitSet;
 import java.util.concurrent.Callable;
 
 public class ImageGeneratorCallable implements Callable<Bitmap> {
-    Bitmap image;
     int dropsQnty;
     int dropRadius;
     int tailRadius;
