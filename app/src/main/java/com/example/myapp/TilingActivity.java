@@ -107,6 +107,12 @@ public class TilingActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean tilingIsGenRunning = sharedPreferences.getBoolean("tilingIsGenRunning", false);
+                if (tilingIsGenRunning) {
+                    return;
+                }
+                sharedPreferences.edit().putBoolean("tilingIsGenRunning", true);
+
                 runButton.setEnabled(false);
                 backButton.setEnabled(false);
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -136,8 +142,9 @@ public class TilingActivity extends AppCompatActivity {
                                     runButton.setEnabled(true);
                                     backButton.setEnabled(true);
                                     Intent intent = new Intent(TilingActivity.this, TilingPictureActivity.class);
+                                    sharedPreferences.edit().putBoolean("tilingIsGenRunning", true);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
-
                                 }
                             });
 
@@ -365,6 +372,7 @@ public class TilingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TilingActivity.this, GeneratorsActicity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         };

@@ -20,6 +20,7 @@ public class GeneratorsActicity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GeneratorsActicity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         };
@@ -32,6 +33,7 @@ public class GeneratorsActicity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(GeneratorsActicity.this, DropsActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent1);
             }
         };
@@ -42,6 +44,7 @@ public class GeneratorsActicity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent2= new Intent(GeneratorsActicity.this, CurlsActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
             }
         };
@@ -52,6 +55,7 @@ public class GeneratorsActicity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent3 = new Intent(GeneratorsActicity.this, TilingActivity.class);
+                intent3.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent3);
             }
         };

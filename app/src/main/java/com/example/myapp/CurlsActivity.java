@@ -100,6 +100,12 @@ public class CurlsActivity extends AppCompatActivity {
         View.OnClickListener onClickListenerRun = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean curlsIsGenRunning = sharedPreferences.getBoolean("curlsIsGenRunning", false);
+                if (curlsIsGenRunning) {
+                    return;
+                }
+                sharedPreferences.edit().putBoolean("curlsIsGenRunning", true);
+
                 runButton.setEnabled(false);
                 backButton.setEnabled(false);
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -132,6 +138,8 @@ public class CurlsActivity extends AppCompatActivity {
                                     runButton.setEnabled(true);
                                     backButton.setEnabled(true);
                                     Intent intent = new Intent(CurlsActivity.this, CurlsPictureActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    sharedPreferences.edit().putBoolean("curlsIsGenRunning", false);
                                     startActivity(intent);
                                 }
                             });
@@ -321,6 +329,7 @@ public class CurlsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CurlsActivity.this, GeneratorsActicity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         };

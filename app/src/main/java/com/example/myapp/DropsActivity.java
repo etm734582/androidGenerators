@@ -106,6 +106,12 @@ public class DropsActivity extends AppCompatActivity {
         View.OnClickListener onClickListener1 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean dropsIsGenRunning = sharedPreferences.getBoolean("dropsIsGenRunning", false);
+                if (dropsIsGenRunning) {
+                    return;
+                }
+                sharedPreferences.edit().putBoolean("dropsIsGenRunning", true);
+
                 runButton.setEnabled(false);
                 backButton.setEnabled(false);
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -136,6 +142,8 @@ public class DropsActivity extends AppCompatActivity {
                                     DropsBitmapHolder.setBitmap(image);
                                     runButton.setEnabled(true);
                                     Intent intent = new Intent(DropsActivity.this, DropsPictureActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    sharedPreferences.edit().putBoolean("dropsIsGenRunning", false);
                                     startActivity(intent);
                                 }
                             });
@@ -283,6 +291,7 @@ public class DropsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DropsActivity.this, GeneratorsActicity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         };
