@@ -4,20 +4,19 @@ import com.example.supporttools.RGB;
 import com.example.supporttools.Vector2;
 
 public class PixelBrush {
-    double angle;
-    double angleShift;
-    double angleShiftPlus;
-    Vector2 position;
-    Vector2 vector;
-    RGB RGBcolor;
-    RGB RGBPlus;
+    private double angle;
+    private double angleShift;
+    private double angleShiftPlus;
+    private Vector2 position;
+    private Vector2 vector;
+    private RGB RGBcolor;
+    private RGB RGBPlus;
 
     public PixelBrush(double angle, Vector2 position, Vector2 vector) {
         this.angle = angle;
         this.position = position;
         this.vector = vector;
-    }
-    public PixelBrush(double angle, Vector2 position, Vector2 vector, double angleShift,
+    }   public PixelBrush(double angle, Vector2 position, Vector2 vector, double angleShift,
                       RGB color, double angleShiftPlus, RGB RGBPlus) {
         this.angle = angle;
         this.position = position;
